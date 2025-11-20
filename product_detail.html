@@ -363,32 +363,32 @@
                 <div class="d-flex flex-column flex-md-column flex-sm-row gap-2 order-1 order-md-0">
                     {% if product.image2 %}
                     <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                        <img src="{{ product.image2.url }}" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover; " onclick="changeMainImage(this)">
+                        <img src="{{ product.image2.url }}" loading="lazy" decoding="async" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover; " onclick="changeMainImage(this)">
                     </div>
                     {% endif %}
                     {% if product.image3 %}
                     <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                        <img src="{{ product.image3.url }}" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
+                        <img src="{{ product.image3.url }}" loading="lazy" decoding="async" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
                     </div>
                     {% endif %}
                     {% if product.image4 %}
                     <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                        <img src="{{ product.image4.url }}" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
+                        <img src="{{ product.image4.url }}" loading="lazy" decoding="async" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
                     </div>
                     {% endif %}
                     {% if product.glass_image %}
                     <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                        <img src="{{ product.glass_image.url }}" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
+                        <img src="{{ product.glass_image.url }}" loading="lazy" decoding="async" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
                     </div>
                     {% endif %}
                     {% if product.plastic_image %}
                     <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                        <img src="{{ product.plastic_image.url }}" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
+                        <img src="{{ product.plastic_image.url }}" loading="lazy" decoding="async" class="img-fluid h-100 w-100 object-fit-cover" style="object-fit: cover;" onclick="changeMainImage(this)">
                     </div>
                     {% endif %}
                     {% if product.image1 %}
                       <div class="overflow-hidden rounded thumb-image mb-2" style="height: 80px; width: 80px;">
-                          <img   src="{{ product.image1.url }}" class="img-fluid w-100 h-100 object-fit-fill" onclick="changeMainImage(this)" >
+                          <img   src="{{ product.image1.url }}" loading="lazy" decoding="async" class="img-fluid w-100 h-100 object-fit-fill" onclick="changeMainImage(this)" >
                     </div>
                     {% endif %}
                 </div>
@@ -415,13 +415,13 @@
                     }
                 }
                 </style>
-                {% if product.image1 %}
                 <div class="main-image flex-grow-1 order-0 order-md-1">
+                    {% if product.image1 %}
                     <div class="overflow-hidden rounded" style="width: 100%; max-width: 450px; ">
-                        <img  id="mainProductImage" src="{{ product.image1.url }}" class="img-fluid w-100 h-100 object-fit-cover">
+                        <img  id="mainProductImage" src="{{ product.image1.url }}" loading="lazy" decoding="async" class="img-fluid w-100 h-100 object-fit-cover">
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
 <script>
@@ -434,23 +434,11 @@
          
         <div class="col-lg-6">
             <div class="d-flex flex-column gap-2">
-                <!-- Breadcrumb -->
-                <!-- <div class="d-flex align-items-center gap-2 custom-breadcrumb">
-                    <span class="text-muted">Home</span>
-                    <img src="{% static 'images2/arrow.svg' %}">
-                    <span class="text-muted">Arabic Perfume</span>
-                    <img src="{% static 'images2/arrow.svg' %}">
-                    <span class="text-muted">Icon alfred dunhil</span>
-                </div> -->
 
                 <!-- Product Details -->
                 <div>
                     <h1 class="mb-2" style="font-family: 'Jomolhari';" >{{ product.name }}</h1>
-{% if is_giftset %}
-                    <p class="text-secondary mb-3" style="display: none;font-style: italic;">Brand : {{ product.subcategory.name }}</p>
-                    {% else %}
-                    <p class="text-secondary mb-3" style="font-style: italic;" >Brand : {{ product.subcategory.name }}</p>
-{% endif %}                    <p>SKU: {{ product.sku }}</p>
+                 <p>SKU: {{ product.sku }}</p>
  <style>
   .stars-outer {
     position: relative;
@@ -635,7 +623,7 @@
 <!-- Size Selection -->
 <div class="mb-3">
     <h5 class="mb-3">Select Size</h5>
-    <div class="d-flex flex-wrap gap-2" id="size-buttons" data-category="{{ product.category.name|lower }}" data-subcategory="{{ product.subcategory.name|lower }}">
+    <div class="d-flex flex-wrap gap-2" id="size-buttons" data-category="{{ product.category.name|lower }}">
 
         {% for variant in variants %}
             <div class="size-option"
@@ -876,13 +864,13 @@
         <!-- ✅ Wishlist / Favorite -->
         <div class="favorite {% if x.product.id in wishlist_product_ids %}active{% endif %}"
           data-product-id="{{ x.product.id }}">
-          <img src="{% static 'images2/favorite.svg' %}" alt="">
+          <img src="{% static 'images2/favorite.svg' %}" loading="lazy" decoding="async" alt="">
         </div>
 
         <!-- ✅ Product Image -->
         <div class="product-img-container">
           {% if x.product.image1 and x.product.image2 %}
-          <img src="{{ x.product.image1.url }}" class="product-img img-fluid" alt="{{ x.product.name }}"
+          <img src="{{ x.product.image1.url }}" loading="lazy" decoding="async" class="product-img img-fluid" alt="{{ x.product.name }}"
             onmouseover="this.src='{{ x.product.image2.url }}'"
             onmouseout="this.src='{{ x.product.image1.url }}'">
           {% endif %}
@@ -893,7 +881,7 @@
           <a href="{% url 'product_detail' x.product.id %}" class="d-flex align-items-center"
             style="text-decoration: none; color: inherit;">
             <div class="cart">
-              <img src="{% static 'images2/shopping_cart.svg' %}" alt="Cart">
+              <img src="{% static 'images2/shopping_cart.svg' %}" loading="lazy" decoding="async" alt="Cart">
             </div>
             <div>Add to Cart</div>
           </a>
@@ -1214,11 +1202,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderSizeButtons() {
         sizeContainer.innerHTML = '';
         const category = sizeContainer.dataset.category?.replace(/\s+/g, '').toLowerCase();
-        const subcategoryName = sizeContainer.dataset.subcategory?.toLowerCase() || "";
-        const isAttar = subcategoryName.includes("attar");        
+
         let filtered = [];
 
-        if (category === 'incense' || isAttar ) {
+        if (category === 'incense' || category == 'attars') {
             // Ignore bottle type for incense
             filtered = variants;
             // Optionally, hide bottle buttons
@@ -1290,9 +1277,7 @@ document.addEventListener("DOMContentLoaded", function () {
     bottleBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const category = sizeContainer.dataset.category?.replace(/\s+/g, '').toLowerCase();
-            const subcategoryName = sizeContainer.dataset.subcategory?.toLowerCase() || "";
-            const isAttar = subcategoryName.includes("attar");
-            if (category === 'incense' || isAttar ) return;
+            if (category === 'incense' || category == 'attars') return;
 
             selectedBottle = btn.dataset.bottle.toString();
             highlightActiveBottle();
@@ -1498,7 +1483,7 @@ document.getElementById('add-to-cart-form').addEventListener('submit', function 
                 messageSpan.textContent = data.message || 'Added to Cart';
                 if (data.product_name) {
                     productInfo.innerHTML = `
-                        <img src="${data.product_image || ''}" alt="${data.product_name}" class="product-image" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                        <img src="${data.product_image || ''}" alt="${data.product_name}" loading="lazy" decoding="async" class="product-image" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
                         <div style="text-align: left;">
                             <div class="product-name">${data.product_name}</div>
                             ${data.product_price ? `<div class="product-price">${data.product_price}</div>` : ''}

@@ -767,51 +767,15 @@ html, body {
                 <div class="right col-md-8 ms-3">
                     <div class="container-fluid px-0">
                         <div class="row g-4 mb-5 mt-2" id="productGrid">
-                            <!-- Product Cards -->
-                            {% for product in products %}
-                            {% if product.image1 %}
-<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-4"><!-- Responsive: 1/row mobile, 2/row tablet, 3/row desktop -->
-    <div class="filter-box h-100">
-      
-        {% if product.is_active %}
-        <div class="favorite {% if product.id in wishlist_product_ids %}active{% endif %}" 
-             data-product-id="{{ product.id }}">
-            <img src="{% static 'images2/favorite.svg' %}" loading="lazy" decoding="async" alt="">
-        </div>
-        
-        <div class="filter-img position-relative">
-            {% if product.image1 and product.image2 %}
-            <img src="{{ product.image1.url }}" loading="lazy" decoding="async" class="card-img-top main-img" alt="{{ product.name }}"
-                 onmouseover="this.src='{{ product.image2.url }}'" 
-                 onmouseout="this.src='{{ product.image1.url }}'">
-            {% endif %}
-            
-            <a href="{% url 'product_detail' product.id %}">
-                <div class="cart text-white text-center fs-6 fw-normal font-jomolhari text-capitalize">
-                    <img src="{% static 'images2/shopping_cart.svg' %}" loading="lazy" decoding="async" alt=""> Add to Cart
-                </div>
-            </a>
-        </div>
-        
-        {% else %}
-        <div class="filter-img position-relative">
-            <img src="{{ product.image1.url }}" loading="lazy" class="card-img-top blurred-image" alt="{{ product.name }}">
-            <div class="out-of-stock-cross">OUT OF STOCK</div>
-            <div class="cart text-white text-center fs-6 fw-normal font-jomolhari text-capitalize">
-                <img src="{% static 'images2/shopping_cart.svg' %}" loading="lazy" decoding="async" alt=""> Add to Cart
-            </div>
-        </div>
-        {% endif %}
+             
         
         <div class="filter-body">
-            <h5 class="filter-title">{{ product.name }}</h5>
-            <p class="filter-text">₹{{ product.price }}</p>
+   
            
         </div>
     </div>
 </div>
-{% endif %}
-{% endfor %}
+
                         </div>
                     </div>
                 </div>

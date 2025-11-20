@@ -14,7 +14,7 @@ services:
   web:
     build: .
     container_name: perfume_django
-    command: daphne -b 0.0.0.0 -p 8000 PerfumeValley.asgi:application --ping-interval 20
+    command: daphne -b 0.0.0.0 -p 8000 PerfumeValley.asgi:application --application-close-timeout 30 --ping-interval 20
     volumes:
       - .:/app
       - static_volume:/app/staticfiles
