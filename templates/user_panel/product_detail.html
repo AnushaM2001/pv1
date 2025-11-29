@@ -1215,7 +1215,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sizeContainer.innerHTML = '';
         const category = sizeContainer.dataset.category?.replace(/\s+/g, '').toLowerCase();
         const subcategoryName = sizeContainer.dataset.subcategory?.toLowerCase() || "";
-        const isAttar = subcategoryName.includes("attar");        
+        const isAttar = subcategoryName.includes("attar") || category === 'attars';        
         let filtered = [];
 
         if (category === 'incense' || isAttar ) {
@@ -1291,7 +1291,7 @@ document.addEventListener("DOMContentLoaded", function () {
         btn.addEventListener('click', () => {
             const category = sizeContainer.dataset.category?.replace(/\s+/g, '').toLowerCase();
             const subcategoryName = sizeContainer.dataset.subcategory?.toLowerCase() || "";
-            const isAttar = subcategoryName.includes("attar");
+            const isAttar = subcategoryName.includes("attar") || category === 'attars';
             if (category === 'incense' || isAttar ) return;
 
             selectedBottle = btn.dataset.bottle.toString();

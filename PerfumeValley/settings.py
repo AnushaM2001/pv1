@@ -253,8 +253,8 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 LOGIN_URL = '/login/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-RAZORPAY_KEY_ID='rzp_test_4n1nOY0K5q7P3g'
-RAZORPAY_SECRET='aA5yciXqziLqd5OdPd0MyOHZ'
+RAZORPAY_KEY_ID='rzp_live_Rl8KKKylmcJZ6y'
+RAZORPAY_SECRET='YAoy1Cg8Po2p61HUmRom2x95'
 
 # settings.py
 APPEND_SLASH = False

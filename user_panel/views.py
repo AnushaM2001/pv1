@@ -376,8 +376,10 @@ def toggle_wishlist(request):
         return JsonResponse({"status": status})
 
     return JsonResponse({"error": "Invalid request"}, status=400)
-
+from django.core.paginator import Paginator
 def ajax_filter_products(request):
+    page = int(request.GET.get('page', 1))
+
     # --- 1️⃣ Get filters from GET ---
     category_ids = request.GET.getlist('category[]')
     subcategory_ids = request.GET.getlist('subcategory[]')
@@ -524,13 +526,19 @@ def ajax_filter_products(request):
                 'is_trending': var.product.is_trending,
                 'is_new_arrival': var.product.is_new_arrival,
             })
-
+    paginator = Paginator(product_data, 12)
+    page_obj = paginator.get_page(page)
+    paged_products = page_obj.object_list
     return JsonResponse({
-        'products': product_data,
+        'products': paged_products,
         'category_name': category_name,
         'subcategory_name': subcategory_name,
         'category_banner_url': category_banner_url,
         'subcategory_banner_url': subcategory_banner_url,
+        'current_page': page_obj.number,
+        'total_pages': paginator.num_pages,
+        'has_next': page_obj.has_next(),
+        'next_page': page_obj.next_page_number() if page_obj.has_next() else None
     })
 
 
